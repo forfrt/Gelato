@@ -15,11 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-
-
-from . import views
+from gelato import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('login/', views.login),
+    # path('admin/', admin.site.urls),
+    # path('login/', views.login),
+
+    path('index/', views.index),
+    path('welcome/', views.welcome),
+    path('clean/', views.clean),
+    path('pix/', views.pix),
+    path('registration/', views.registration),
+    path('countlist/', views.countlist),
+    path('signin/', views.signin),
+    path('signup/', views.signup),
 ]

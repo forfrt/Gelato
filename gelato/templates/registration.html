@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1 style="...">registration</h1>
+{#<form action="/registration/" method="post">#}
+{#    User name:#}
+{#    <input type="text" name="username"/>#}
+{#    Password:#}
+{#    <input type="password" name="password"/>#}
+{##}
+{#    <input type="submit" value="registration"/>#}
+{##}
+{#</form>#}
+{##}
+
+<form action="/countlist/" method="post">
+
+    <input type="submit" value="userlist"/>
+
+</form>
+
+
+{{ note }}
+
+{##}
+{#<h1 style="...">show the username and password</h1>#}
+{#<table border="1">#}
+{#    <thead>#}
+{#        <th>user name</th>#}
+{#        <th>password</th>#}
+{#    </thead>#}
+{#    <tbody>#}
+{#        {% for line in data %}#}
+{#            <tr>#}
+{#                <td>{{ line.user }}</td>#}
+{#                <td>{{ line.pwd }}</td>#}
+{#            </tr>#}
+{#        {% endfor %}#}
+{##}
+{#    </tbody>#}
+{##}
+{#</table>#}
+
+</body>
+</html>
