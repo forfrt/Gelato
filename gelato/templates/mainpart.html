@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>mainpage</title>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+{#<script>#}
+{#    count=0;#}
+{#    function addModule(){#}
+{#        var tr="<tr><td><a href=\"moduleinfo.html\" >New Module"+count+"</a></td><td><input type=\"button\" value=\"addModule\" name=\"addElement\" onclick='addModule()'/></td><td><input type=\"button\" value=\"deleteModule\" id=\"deleteElement\" onclick='deleteModule(this)'/></td></tr>";#}
+{#        // var tr = $("#addModule").clone();#}
+{#        // var count = $('#div').size();#}
+{#        // console.log(count);#}
+{#        // var Module = $(tr).attr("id","addModule"+count.toString());#}
+{#        $("#table").prepend(tr);#}
+{#        count++;#}
+{#    }#}
+{##}
+{#    function deleteModule(lin){#}
+{#        $(lin).parent().parent().remove();#}
+{#        count--;#}
+{#    }#}
+{##}
+{#</script>#}
+
+</head>
+<h1>welcome {{ name }} !</h1>
+<tbody>
+{% for line in data %}
+
+<tr>
+{#    <td>{{ line }}</td>#}
+    <td><form action="/moduleinfo_edit/" method="post">
+        <input type="submit" name="submit" value={{line}}>
+    </form ></td>
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+<body>
+<form action="/mainpart/" method="post">
+   Add module please click <input type="submit" name= "add Module" value={{ name }}>
+</form>
+<form action="/cancle/" method="post">
+
+            <td>
+                <select name="deleteModule">
+                    {% for line in data %}
+                    <option value="{{ line }}">{{line}}</option>
+                    {% endfor %}
+                </select>
+            </td>
+    <input type="submit" value="delete Module"/>
+
+</form>
+{##}
+{##}
+{# <li id="addModule">#}
+{#        <input type="button" value="addModule" name="addElement" onclick='addModule()'/>#}
+{#    </li>#}
+
+{#<table id="table"></table>#}
+</body>
+</html>

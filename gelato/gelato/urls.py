@@ -17,16 +17,25 @@ from django.contrib import admin
 from django.urls import include, path
 from gelato import views
 
-urlpatterns = [
-    # path('admin/', admin.site.urls),
-    # path('login/', views.login),
 
+urlpatterns = [
+
+    # path('admin/', admin.site.urls),
     path('index/', views.index),
     path('welcome/', views.welcome),
     path('clean/', views.clean),
-    path('pix/', views.pix),
-    path('registration/', views.registration),
-    path('countlist/', views.countlist),
-    path('signin/', views.signin),
-    path('signup/', views.signup),
+    path('pix_admin/', views.pix_admin),
+    path('pix_lecture/', views.pix_lecture),
+    path('registration/',views.registration),
+    path('countlist/',views.countlist),
+    path('signin/',views.signin),
+    path('signin_1/',views.signin_1),
+    path('signup/',views.signup),
+    path('mainpart/',views.mainpart),
+    path('moduleinfo/',views.moduleinfo),
+    path('assignmentinfo/',views.assignmentinfo),
+    path('moduleadd/',views.moduleadd),
+    path('moduleinfo_edit/',views.moduleinfo_edit),
+    path('cancle/',views.cancle),
+    path('module_edition/',views.module_edition),
 ]

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>login</title>
+<link rel="stylesheet" type="text/css" href="../static/css/style.css">
+</head>
+<body style="font-size: 17px;line-height:0;">
+<div class="form-div" style="margin-top:180px">
+
+
+
+{#    <form action="/pix/" method="post">#}
+{#    User name:#}
+{#    <input type="text" name="username"/>#}
+{#    Password:#}
+{#    <input type="password" name="password"/>#}
+{##}
+{#    <input type="submit" value="login"/>#}
+{#    </form>#}
+
+
+
+{#    <form id="reg-form" action="pix" method="post">#}
+    <form action="/pix_admin/" method="post">
+        <table>
+            <tr>
+                <td><b>Account</b></td>
+                <td><input name="uid" type="text" id="uid" > </td>
+            </tr>
+            <tr>
+                <td><b>Password</b></td>
+                <td><input name="psw1" type="password" id="psw1"> </td>
+            </tr>
+        </table>
+        <div class="buttons">
+            <input value="sign in" type="submit" >
+            <input value="sign up" type="button" onclick="window.location.href='../signup'">
+        </div>
+        <br class="clear">
+    </form>
+</div>
+</body>
+</html>
