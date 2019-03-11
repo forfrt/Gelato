@@ -38,4 +38,5 @@ urlpatterns = [
     path('moduleinfo_edit/',views.moduleinfo_edit),
     path('cancle/',views.cancle),
     path('module_edition/',views.module_edition),
+    path('logout/', views.logout),
 ]

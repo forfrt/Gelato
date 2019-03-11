@@ -135,11 +135,14 @@ def countlist(request):
 
 
 def pix_lecture(request):
+
     if request.method == "POST":
         username = request.POST.get("uid", None)
         password = request.POST.get("psw1", None)
         if len(models.Academics.objects.filter(uername=username))>0:
             if models.Academics.objects.get(uername=username).encripted_pwd == password:
+                m = models.Academics.objects.get(uername=username)
+                request.session['member_id'] = m.uername
                 academic_id = models.Academics.objects.get(uername=username).academic_id
                 model_list = models.Modules.objects.filter(academic_id=academic_id)
                 data=[]
@@ -150,14 +153,20 @@ def pix_lecture(request):
                 return render(request, "wrong.html",{"name":username} )
         else:
             return render(request, "donot.html",{"name":username} )
-
+    username = request.session.get('member_id')
+    academic_id = models.Academics.objects.get(uername=username).academic_id
+    model_list = models.Modules.objects.filter(academic_id=academic_id)
+    data = []
+    for name in model_list:
+        data.append(name.module_code)
+    return render(request, "mainpart.html", {"data": data, "name": username})
 
 def mainpart(request):
     if request.method == "POST":
-        name = request.POST.get("add Module")
+        # name = request.POST.get("add Module")
         # academic_id = request.POST.get("name")
-
         # return render(request, "moduleinfo.html",{"id":academic_id})
+        name = request.session.get('member_id')
         return render(request, "moduleinfo.html",{"name":name})
 def cancle(request):
     if request.method == "POST":
@@ -181,12 +190,15 @@ def pix_admin(request):
         password = request.POST.get("psw1", None)
         if len(models.Administrators.objects.filter(uername=username))>0:
             if models.Administrators.objects.get(uername=username).encripted_pwd == password:
-                username = models.Administrators.objects.get(uername=username).uername
+                m=models.Administrators.objects.get(uername=username)
+                request.session['member_id'] = m.uername
                 return render(request, "welcome.html",{"name":username} )
             else:
                 return render(request, "wrong.html",{"name":username} )
         else:
             return render(request, "donot.html",{"name":username} )
+    username = request.session.get('member_id')
+    return render(request, "welcome.html", {"name": username})
 
 
 def clean(request):
@@ -209,3 +221,10 @@ def signin_1(request):
     return render(request, "signin_1.html",)
 def signup(request):
     return render(request, "signup.html", )
+
+def logout(request):
+    try:
+        del request.session['member_id']
+    except KeyError:
+        pass
+    return HttpResponse("You're logged out.")
