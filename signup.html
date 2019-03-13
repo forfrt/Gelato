@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>login</title>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body style="font-size: 17px;line-height:0;">
+<div class="form-div" style="margin-top:180px">
+    <form id="reg-form" action="" method="post">
+        <table>
+            <tr>
+                <td><b>Identity</b></td>
+                <td><select name="identity"> 
+                        <option value="0">Lecturer</option> 
+                        <option value="1">Administrator</option> 
+                    </select> 
+                </td>
+            </tr>
+            <tr>
+                <td><b>Account</b></td>
+                <td><input name="uid" type="text" id="uid" > </td>
+            </tr>
+            <tr>
+                <td><b>Password</b></td>
+                <td><input name="psw1" type="password" id="psw1"> </td>
+            </tr>
+            <tr>
+                <td><b>Email</b></td>
+                <td><input name="email" type="email" id="email"></td>
+            </tr>
+            <tr>
+                <td><b>Nickname</b></td>
+                <td><input name="nickname" type="text" id="nickname"></td>
+            </tr>
+
+
+        </table>
+        <div class="buttons">
+            <input value="submit" type="submit" >
+            <input value="sign in" type="button" onclick="window.location.href='signin.html'">
+        </div>
+        <br class="clear">
+    </form>
+</div>
+</body>
+</html>
