@@ -1,0 +1,62 @@
+
+body{background:rgb(5, 5, 5);}
+
+/* div{text-align: center;margin: 0 aut0} */
+
+input[type="button"] {
+    background-color: black;
+    border-color:white;
+    padding:7px 15px;
+    border-radius:5px;
+    min-width:50px;
+    font-weight: bold;
+    color:rgb(253, 253, 253);
+    margin-top:10px;
+    opacity:0.8;
+}
+input[type="button"]:hover{
+    opacity:1.0;
+}
+
+input[name="addElement"]{
+    /* background-image:"img/add.png"; */
+	margin-left:20px;
+}
+
+.first{
+    text-align:center;
+    margin: 0 aut0;
+}
+
+input[id="init"]{
+    margin-top:50px;
+}
+
+a{
+    font-size: 13px;
+    padding-right:150px;
+    /* margin-right:150px; */
+    color: azure;
+	text-decoration: none;
+}
+a:focus { outline: none;}
+
+td[name="modulename"]{
+    border:1px solid azure;
+    border-radius:5px;
+    padding:7px 10px;
+    text-align: left;
+}
+td[name="modulename"]:hover{background-color:rgb(4, 170, 81);}
+
+table{
+    border-collapse: separate;
+    border-spacing:0px 10px;
+    margin:0 auto;
+}
+
+.second{
+    margin:0 auto;
+    text-align: center; 
+}
+
