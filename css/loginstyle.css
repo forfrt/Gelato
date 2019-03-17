@@ -20,7 +20,7 @@ input[type="text"], input[type="password"], input[type="email"] {
 }
 input[type="button"], input[type="submit"] {
     padding:7px 15px;
-    background-color:rgb(4, 170, 81);
+    background-color: #3b98c8;;
     text-align:center;
     border-radius:5px;
     min-width:80px;

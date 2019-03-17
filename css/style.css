@@ -1,10 +1,12 @@
 
-body{background:rgb(5, 5, 5);}
+body{
+    background:#252c35;
+}
 
 /* div{text-align: center;margin: 0 aut0} */
 
 input[type="button"] {
-    background-color: black;
+    background-color:transparent;
     border-color:white;
     padding:7px 15px;
     border-radius:5px;
@@ -58,5 +60,9 @@ table{
 .second{
     margin:0 auto;
     text-align: center; 
+}
+
+p{
+    color:azure;
 }
 
