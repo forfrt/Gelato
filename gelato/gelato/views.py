@@ -2,13 +2,12 @@ from django.shortcuts import render
 
 # Create your views here.
 
-
+import json
 
 from django.shortcuts import render
 from django.shortcuts import HttpResponse
 from gelato import models
 # Create your views here.
-
 
 user_list = [
     {"user":"jack","pwd":"abc"},
@@ -16,16 +15,10 @@ user_list = [
 ]
 
 
-
-
 def index(request):
-    # pass
-
 
     if request.method == "POST":
         return render(request, "registration.html", )
-
-
 
     return render(request, "index.html",)
 
@@ -57,7 +50,9 @@ def registration(request):
             else:
                 models.Administrators.objects.create(admin_id=id, position=position,email=email,name=realname, uername=username, encripted_pwd=password)
                 return render(request, "registration.html", {"note": "registration complete!"})
+
     return render(request, "registration.html", {"note": ""})
+
 
 
 def moduleadd(request):
@@ -81,6 +76,14 @@ def moduleadd(request):
             data.append(name.module_code)
         return render(request, "mainpart.html", {"data": data, "name": username})
 
+def module_delete(request):
+    if request.method == "POST":
+        request_dict=json.loads(request.POST)
+        module_code=request_dict.get('module_code', None)
+        module_deleted=models.Modules.objects.filter(module_code=module_code)
+        module_deleted.delete()
+        return json.dumps(request_dict)
+
 
 
 def moduleinfo_edit(request):
@@ -93,6 +96,7 @@ def moduleinfo_edit(request):
         id = models.Modules.objects.get(module_code=model_code).academic_id
         uname = models.Academics.objects.get(academic_id=id).uername
     return render(request, "moduleinfo_edit.html", {"uname":uname,"credits":credits,"departments":department,"duration":duration,"students":students,"modelcode":model_code})
+
 
 def module_edition(request):
     if request.method == "POST":
@@ -228,3 +232,4 @@ def logout(request):
     except KeyError:
         pass
     return HttpResponse("You're logged out.")
+
