@@ -39,4 +39,7 @@ urlpatterns = [
     path('moduleinfo_edit/',views.moduleinfo_edit),
     path('cancle/',views.cancle),
     path('module_edition/',views.module_edition),
+    path('addassignment/', views.addassignment),
+    path('assignment/', views.assignment),
+    path('assignment_edit/', views.assignment_edit, ),
 ]

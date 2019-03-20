@@ -85,24 +85,29 @@ def module_delete(request):
         return json.dumps(request_dict)
 
 
-
 def moduleinfo_edit(request):
     if request.method == "POST":
         model_code=request.POST.get("submit",None)
+        request.session['moduleid'] = model_code
         credits = models.Modules.objects.get(module_code=model_code).credits
         department = models.Modules.objects.get(module_code=model_code).department
         duration = models.Modules.objects.get(module_code=model_code).duration
         students = models.Modules.objects.get(module_code=model_code).students
         id = models.Modules.objects.get(module_code=model_code).academic_id
-        uname = models.Academics.objects.get(academic_id=id).uername
-    return render(request, "moduleinfo_edit.html", {"uname":uname,"credits":credits,"departments":department,"duration":duration,"students":students,"modelcode":model_code})
+        name = models.Academics.objects.get(academic_id=id).name
+        module_id = models.Modules.objects.get(module_code=model_code).module_id
+        assignment_list = models.Assignments.objects.filter(module_id=module_id)
+        data = []
+        for name in assignment_list:
+            data.append(name.assignment_id)
+    return render(request, "moduleinfo_edit.html", {"uname":name,"credits":credits,"departments":department,"duration":duration,"students":students,"modelcode":model_code,"data":data})
 
 
+# 对module 进行储存的代码
 def module_edition(request):
-    if request.method == "POST":
-        username = request.POST.get("uName",None)
+        realname= request.POST.get("uName",None)
         module_code = request.POST.get("mCode", None)
-        academic_id = models.Academics.objects.get(uername=username).academic_id
+        academic_id = models.Academics.objects.get(name=realname).academic_id
         department = request.POST.get("department", None)
         duration = request.POST.get("duration", None)
         students = request.POST.get("sNumber", None)
@@ -110,16 +115,19 @@ def module_edition(request):
         level = request.POST.get("Lever", None)
         if len(models.Modules.objects.filter(module_code=module_code))>0:
             models.Modules.objects.filter(module_code=module_code).delete()
-            models.Modules.objects.create(module_code=module_code, academic_id=academic_id, department=department,
+            models.Modules.objects.create(module_id=module_code,module_code=module_code, academic_id=academic_id, department=department,
                                           duration=duration, students=students, credits=credits, level=level)
         else:
-            models.Modules.objects.create(module_code=module_code, academic_id=academic_id, department=department,
+            models.Modules.objects.create(module_id=module_code,module_code=module_code, academic_id=academic_id, department=department,
                                           duration=duration, students=students, credits=credits,level=level)
+
         model_list = models.Modules.objects.filter(academic_id=academic_id)
         data = []
         for name in model_list:
             data.append(name.module_code)
-        return render(request, "mainpart.html", {"data": data, "name": username})
+        return render(request, "mainpart.html", {"data": data, "name": realname})
+
+
 
 
 
@@ -232,4 +240,61 @@ def logout(request):
     except KeyError:
         pass
     return HttpResponse("You're logged out.")
+
+def assignment(request):
+
+    if request.method == "POST":
+        count = 0
+        # modulecode = request.POST.get("mCode", None)
+        email = request.session.get('member_id')
+        modulecode = request.session.get('moduleid')
+        modulecturer= models.Academics.objects.get(email=email).name
+        if len(models.Modules.objects.filter(module_code=modulecode))>0:
+            count = len(models.Assignments.objects.filter(module_id=modulecode))+1
+        moduleid = modulecode +"_"+ str(count)
+        return render(request,"assignmentinfo.html",{"modulecturer": modulecturer,"moduleid":moduleid,"modulecode":modulecode})
+
+
+def addassignment(request):
+    if request.method == "POST":
+        email = request.session.get('member_id')
+        name = models.Academics.objects.get(email=email).name
+        module_id = request.POST.get("mCode", None)
+        assignment_id = request.POST.get("aId", None)
+        academic_id = models.Academics.objects.get(email=email).academic_id
+        registration_date = request.POST.get("registration_date", None)
+        realease_date = request.POST.get("realease_date", None)
+        submission_date = request.POST.get("Submission_date", None)
+        percentage = request.POST.get("aPer", None)
+        assignment_format = request.POST.get("aformat", None)
+        cw_marks_format = request.POST.get("aMark", None)
+        models.Assignments.objects.create(assignment_id=assignment_id, module_id=module_id, academic_id=academic_id,
+                                          registration_date=registration_date,submission_date=submission_date,
+                                          assignment_format=assignment_format, name=name, percentage=percentage, realease_date=realease_date,
+                                         cw_marks_format=cw_marks_format,)
+        credits = models.Modules.objects.get(module_code=module_id).credits
+        department = models.Modules.objects.get(module_code=module_id).department
+        duration = models.Modules.objects.get(module_code=module_id).duration
+        students = models.Modules.objects.get(module_code=module_id).students
+        assignment_list = models.Assignments.objects.filter(module_id=module_id)
+        data = []
+        for name in assignment_list:
+            data.append(name.assignment_id)
+        return render(request, "moduleinfo_edit.html", {"uname":name,"credits":credits,"departments":department,"duration":duration,"students":students,"modelcode":module_id,"data":data})
+    # if request.method == "POST":
+
+
+
+def assignment_edit(request):
+    if request.method == "POST":
+        assignment_id = request.POST.get('submit', None)
+        modulecode = models.Assignments.objects.get(assignment_id=assignment_id).module_id
+        modulecturer = models.Assignments.objects.get(assignment_id=assignment_id).name
+        registration_date = str(models.Assignments.objects.get(assignment_id=assignment_id).registration_date)
+        realease_date = str(models.Assignments.objects.get(assignment_id=assignment_id).realease_date)
+        Submission_date = str(models.Assignments.objects.get(assignment_id=assignment_id).submission_date)
+        aformat = models.Assignments.objects.get(assignment_id=assignment_id).assignment_format
+        aPer = models.Assignments.objects.get(assignment_id=assignment_id).percentage
+        return render(request,"assignmentinfo_edit.html",{"assignmentid":assignment_id,"modulecode":modulecode,"modulecturer":modulecturer,"registration_date":registration_date,"realease_date":realease_date,"Submission_date":Submission_date,"aformat":aformat,"aPer":aPer})
+
 

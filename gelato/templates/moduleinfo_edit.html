@@ -93,4 +93,17 @@ $("#deleteElement").click(function(){
 <input type="button" value="deleteAssignment" id="deleteElement"/>
 <table id="table"></table>
 </body>
+<tbody>
+{% for line in data %}
+
+<tr>
+{#    <td>{{ line }}</td>#}
+    <td><form action="/assignment_edit/" method="post">
+        <input type="submit" name="submit" value={{line}}>
+    </form ></td>
+</tr>
+
+{% endfor %}
+
+</tbody>
 </html>
