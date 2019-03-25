@@ -6,30 +6,6 @@
 
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 
-<script>
-    
-    function delete_module(module_code){
-
-        const input=JSON.stringify({module_code: module_code})
-        $.ajax(
-            {
-                url: "../delete_module",
-                data: input,
-                contentType: 'application/json',
-                type: 'POST',
-
-                success: function(response){
-                    module_code=response.module_code
-                    alert("The module %s have been deleted" % module_code)
-                }
-
-                
-            }
-        )
-    }
-
-</script>
-
 
 </head>
 <h1>welcome {{ name }} !</h1>
@@ -49,16 +25,17 @@
 <body>
 <form action="/mainpart/" method="post">
    Add module please click <input type="submit" name= "add Module" value="add Moudle">
+{#    Add module please click <input type="submit" name= "add Module" value={{ name }}>#}
 </form>
 <form action="/cancle/" method="post">
 
-    <td>
-        <select name="deleteModule">
-        {% for line in data %}
-        <option value="{{ line }}" id="{{line}}">{{line}}</option>
-        {% endfor %}
-        </select>
-    </td>
+            <td>
+                <select name="deleteModule">
+                    {% for line in data %}
+                    <option value="{{ line }}">{{line}}</option>
+                    {% endfor %}
+                </select>
+            </td>
     <input type="submit" value="delete Module"/>
 
 </form>
