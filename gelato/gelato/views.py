@@ -1,19 +1,13 @@
-from django.shortcuts import render
-
-# Create your views here.
-
 import json
 
+from gelato import models
 from django.shortcuts import render
 from django.shortcuts import HttpResponse
-from gelato import models
-# Create your views here.
 
 user_list = [
     {"user":"jack","pwd":"abc"},
     {"user":"wom","pwd":"ABC"},
 ]
-
 
 def index(request):
 
@@ -34,7 +28,7 @@ def registration(request):
         realname = request.POST.get("realname", None)
         position = request.POST.get("pos", None)
         # 添加数据到数据库
-        if identity == "0":
+        if identity == '0':
             if len(models.Academics.objects.filter(academic_id=id))>0:
                 return render(request, "used.html",)
             elif len(models.Academics.objects.filter(uername=username))>0:
@@ -42,7 +36,7 @@ def registration(request):
             else:
                 models.Academics.objects.create(academic_id=id,email=email,name=realname, uername=username, encripted_pwd=password)
                 return render(request, "registration.html", {"note": "registration complete!"})
-        else:
+        elif identity== '1':
             if len(models.Administrators.objects.filter(admin_id=id))>0:
                 return render(request, "used.html",)
             elif len(models.Administrators.objects.filter(uername=username))>0:
@@ -50,10 +44,6 @@ def registration(request):
             else:
                 models.Administrators.objects.create(admin_id=id, position=position,email=email,name=realname, uername=username, encripted_pwd=password)
                 return render(request, "registration.html", {"note": "registration complete!"})
-    else:
-
-        return http
-    return render(request, "registration.html", {"note": ""})
 
 
 
@@ -140,40 +130,14 @@ def countlist(request):
 #     教程里的展示账号密码
 
 
-def pix_lecture(request):
-
-    if request.method == "POST":
-        username = request.POST.get("uid", None)
-        password = request.POST.get("psw1", None)
-        if len(models.Academics.objects.filter(uername=username))>0:
-            if models.Academics.objects.get(uername=username).encripted_pwd == password:
-                m = models.Academics.objects.get(uername=username)
-                request.session['member_id'] = m.uername
-                academic_id = models.Academics.objects.get(uername=username).academic_id
-                model_list = models.Modules.objects.filter(academic_id=academic_id)
-                data=[]
-                for name in model_list:
-                    data.append(name.module_code)
-                return render(request, "mainpart.html",{"data":data,"name":username})
-            else:
-                return render(request, "wrong.html",{"name":username} )
-        else:
-            return render(request, "donot.html",{"name":username} )
-    username = request.session.get('member_id')
-    academic_id = models.Academics.objects.get(uername=username).academic_id
-    model_list = models.Modules.objects.filter(academic_id=academic_id)
-    data = []
-    for name in model_list:
-        data.append(name.module_code)
-    return render(request, "mainpart.html", {"data": data, "name": username})
-
 def mainpart(request):
     if request.method == "POST":
-        # name = request.POST.get("add Module")
+        name = request.POST.get("add Module")
         # academic_id = request.POST.get("name")
+
         # return render(request, "moduleinfo.html",{"id":academic_id})
-        name = request.session.get('member_id')
         return render(request, "moduleinfo.html",{"name":name})
+
 def cancle(request):
     if request.method == "POST":
         model_id = request.POST.get("deleteModule")
@@ -190,21 +154,42 @@ def moduleinfo(request):
 
 def assignmentinfo(request):
     pass
-def pix_admin(request):
+
+def signin_pages(request, role_id):
+    if request.method=="GET":
+        return render(request, "sigin.html", {"role":role_id})
+
+
+def login(request, role_id):
     if request.method == "POST":
         username = request.POST.get("uid", None)
-        password = request.POST.get("psw1", None)
-        if len(models.Administrators.objects.filter(uername=username))>0:
-            if models.Administrators.objects.get(uername=username).encripted_pwd == password:
-                m=models.Administrators.objects.get(uername=username)
-                request.session['member_id'] = m.uername
-                return render(request, "welcome.html",{"name":username} )
+        password = request.POST.get("psw", None)
+        role=reqeust.POST.get("role", None)
+
+        if role==1:
+            if len(models.Administrators.objects.filter(uername=username))>0:
+                if models.Administrators.objects.get(uername=username).encripted_pwd == password:
+                    username = models.Administrators.objects.get(uername=username).uername
+                    return render(request, "welcome.html",{"name":username} )
+                else:
+                    return render(request, "wrong.html",{"name":username} )
             else:
-                return render(request, "wrong.html",{"name":username} )
+                return render(request, "donot.html",{"name":username} )
+        elif role==0:
+            if len(models.Academics.objects.filter(uername=username))>0:
+                if models.Academics.objects.get(uername=username).encripted_pwd == password:
+                    academic_id = models.Academics.objects.get(uername=username).academic_id
+                    module_list = models.Modules.objects.filter(academic_id=academic_id)
+                    return render(request, "mainpart.html",{"module_list":module_list})
+                else:
+                    return render(request, "wrong.html",{"name":username} )
+            else:
+                return render(request, "donot.html",{"name":username} )
+
         else:
-            return render(request, "donot.html",{"name":username} )
-    username = request.session.get('member_id')
-    return render(request, "welcome.html", {"name": username})
+            # TODO 404
+            pass
+
 
 
 def clean(request):
@@ -219,18 +204,5 @@ def welcome(request):
 
     return render(request, "welcome.html",)
 
-def signin(request):
-    return render(request, "signin.html",)
-
-
-def signin_1(request):
-    return render(request, "signin_1.html",)
 def signup(request):
     return render(request, "signup.html", )
-
-def logout(request):
-    try:
-        del request.session['member_id']
-    except KeyError:
-        pass
-    return HttpResponse("You're logged out.")

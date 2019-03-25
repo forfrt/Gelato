@@ -22,7 +22,6 @@ class Academics(models.Model):
     academic_id = models.CharField(primary_key=True, max_length=255)
     name = models.CharField(max_length=255)
     email = models.CharField(max_length=255)
-    uername = models.CharField(max_length=255)
     encripted_pwd = models.CharField(max_length=255)
 
     class Meta:
@@ -35,7 +34,6 @@ class Administrators(models.Model):
     position = models.CharField(max_length=255)
     email = models.CharField(max_length=255)
     name = models.CharField(max_length=255)
-    uername = models.CharField(max_length=255)
     encripted_pwd = models.CharField(max_length=255)
 
     class Meta:
@@ -45,15 +43,15 @@ class Administrators(models.Model):
 
 class Assignments(models.Model):
     assignment_id = models.CharField(primary_key=True, max_length=255)
-    module_code = models.ForeignKey('Modules', models.DO_NOTHING, db_column='module_code')
-    academic = models.ForeignKey(Academics, models.DO_NOTHING)
-    registration_date = models.DateTimeField()
-    duration = models.CharField(max_length=255)
-    assignment_format = models.CharField(max_length=255)
-    name = models.CharField(max_length=255)
-    percentage = models.CharField(max_length=255)
-    realease_date = models.DateTimeField()
-    submission_date = models.DateTimeField()
+    module = models.ForeignKey('Modules', models.DO_NOTHING, blank=True, null=True)
+    academic = models.ForeignKey(Academics, models.DO_NOTHING, blank=True, null=True)
+    registration_date = models.DateTimeField(blank=True, null=True)
+    duration = models.CharField(max_length=255, blank=True, null=True)
+    assignment_format = models.CharField(max_length=255, blank=True, null=True)
+    name = models.CharField(max_length=255, blank=True, null=True)
+    percentage = models.CharField(max_length=255, blank=True, null=True)
+    realease_date = models.DateTimeField(blank=True, null=True)
+    submission_date = models.DateTimeField(blank=True, null=True)
     cw_marks_format = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
@@ -62,13 +60,14 @@ class Assignments(models.Model):
 
 
 class Modules(models.Model):
-    module_code = models.CharField(primary_key=True, max_length=255)
-    academic = models.ForeignKey(Academics, models.DO_NOTHING)
-    department = models.CharField(max_length=255)
-    duration = models.CharField(max_length=255)
-    students = models.IntegerField()
-    credits = models.IntegerField()
-    level = models.CharField(max_length=255)
+    module_id = models.CharField(primary_key=True, max_length=255)
+    module_code = models.CharField(max_length=255, blank=True, null=True)
+    academic = models.ForeignKey(Academics, models.DO_NOTHING, blank=True, null=True)
+    department = models.CharField(max_length=255, blank=True, null=True)
+    duration = models.CharField(max_length=255, blank=True, null=True)
+    students = models.IntegerField(blank=True, null=True)
+    credits = models.IntegerField(blank=True, null=True)
+    level = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
         managed = False
@@ -141,15 +140,6 @@ class AuthUserUserPermissions(models.Model):
         unique_together = (('user', 'permission'),)
 
 
-class CmdbUserinfor(models.Model):
-    user = models.CharField(max_length=32)
-    pwd = models.CharField(max_length=32)
-
-    class Meta:
-        managed = False
-        db_table = 'cmdb_userinfor'
-
-
 class DjangoAdminLog(models.Model):
     action_time = models.DateTimeField()
     object_id = models.TextField(blank=True, null=True)
@@ -192,3 +182,12 @@ class DjangoSession(models.Model):
     class Meta:
         managed = False
         db_table = 'django_session'
+
+
+class GelatoUserinfor(models.Model):
+    user = models.CharField(max_length=32)
+    pwd = models.CharField(max_length=32)
+
+    class Meta:
+        managed = False
+        db_table = 'gelato_userinfor'
