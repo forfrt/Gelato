@@ -1,0 +1,37 @@
+@charset "utf-8";
+body{background:rgb(5, 5, 5); }
+
+table {border-spacing:0;}
+
+
+.form-div{background-color:rgba(255,255,255,0.27); border-radius:10px; border:1px solid #aaa; width:425px;margin:0 auto;padding:30px 0 20px 10px; font-size:12px;box-shadow: 0px 0px 10px rgba(49, 26, 26, 0.5),0px 0px 15px rgba(75,75,75,0.3);}
+
+.form-div input[type="text"], .form-div input[type="password"], .form-div input[type="email"]{width:268px; margin:10px; line-height:20px; font-size:16px;}
+
+.form-div table{margin:0 auto; text-align:left; color:rgb(252, 250, 250);}
+
+input[type="text"], input[type="password"], input[type="email"] {
+    border-radius:8px;
+    padding:10px;
+    border:1px solid #D4D4D4;
+    color:#333333;
+}
+input[type="button"], input[type="submit"] {
+    padding:7px 15px;
+    background-color:rgb(4, 170, 81);;
+    text-align:center;
+    border-radius:5px;
+    min-width:80px;
+    border:none;
+    color:#FFF;
+    margin-top:10px;
+    margin-left:100px;
+}
+
+select{
+    border-radius:8px;
+    padding:5px;
+    margin:10px;
+    border:1px solid #D4D4D4;
+    color:#333333;
+}
