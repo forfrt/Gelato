@@ -170,7 +170,7 @@ def signin_pages(request, role_id):
         return render(request, "sigin.html", {"role":role_id})
 
 
-def login(request, role_id):
+def login(request):
     if request.method == "POST":
         username = request.POST.get("uid", None)
         password = request.POST.get("psw", None)

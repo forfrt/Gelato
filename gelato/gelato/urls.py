@@ -21,8 +21,8 @@ from gelato import views
 urlpatterns = [
 
     # path('admin/', admin.site.urls),
-    path('signin/<int:role_id>', view.signin_pages)
-    path('login', view.login)
+    path('signin_<int:role_id>', views.signin_pages),
+    path('login/', views.login),
 
     # path('admin/', admin.site.urls),
     path('index/', views.index),

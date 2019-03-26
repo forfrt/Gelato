@@ -2,25 +2,19 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>login</title>
-<link rel="stylesheet" type="text/css" href="../static/css/style.css">
+<link rel="stylesheet" type="text/css" href="css/loginstyle.css">
 </head>
 <body style="font-size: 17px;line-height:0;">
 <div class="form-div" style="margin-top:180px">
-
-
-    <form id="reg-form" action="/registration/" method="post">
+    <form id="reg-form" action="" method="post">
         <table>
             <tr>
                 <td><b>Identity</b></td>
-                <td><select name="identity">
-                        <option value="0">Lecturer</option>
-                        <option value="1">Administrator</option>
-                    </select>
+                <td><select name="identity"> 
+                        <option value="0">Lecturer</option> 
+                        <option value="1">Administrator</option> 
+                    </select> 
                 </td>
-            </tr>
-            <tr>
-                <td><b>Id</b></td>
-                <td><input name="id" type="text" id="id" > </td>
             </tr>
             <tr>
                 <td><b>Account</b></td>
@@ -28,28 +22,23 @@
             </tr>
             <tr>
                 <td><b>Password</b></td>
-                <td><input name="pswl" type="text" id="psw1"> </td>
+                <td><input name="psw1" type="password" id="psw1"> </td>
             </tr>
             <tr>
                 <td><b>Email</b></td>
-                <td><input name="email" type="text" id="email"></td>
+                <td><input name="email" type="email" id="email"></td>
             </tr>
             <tr>
-                <td><b>Realname</b></td>
-                <td><input name="realname" type="text" id="realname"></td>
+                <td><b>Nickname</b></td>
+                <td><input name="nickname" type="text" id="nickname"></td>
             </tr>
-            <tr>
-                <td><b>Position</b></td>
-                <td><input name="pos" type="text" id="pos" > </td>
-            </tr>
+
 
         </table>
-
         <div class="buttons">
             <input value="submit" type="submit" >
-            <input value="sign in" type="button" onclick="window.location.href='../signin'">
+            <input value="sign in" type="button" onclick="window.location.href='signin.html'">
         </div>
-
         <br class="clear">
     </form>
 </div>
