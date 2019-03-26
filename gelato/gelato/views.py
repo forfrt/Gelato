@@ -216,8 +216,6 @@ def welcome(request):
 
 def signup(request):
     return render(request, "signup.html", )
-<<<<<<< HEAD
-=======
 
 def logout(request):
     try:
@@ -283,4 +281,3 @@ def assignment_edit(request):
         return render(request,"assignmentinfo_edit.html",{"assignmentid":assignment_id,"modulecode":modulecode,"modulecturer":modulecturer,"registration_date":registration_date,"realease_date":realease_date,"Submission_date":Submission_date,"aformat":aformat,"aPer":aPer})
 
 
->>>>>>> 3c236443fad63563afc0d70be33dfbdd1ea49ef7
