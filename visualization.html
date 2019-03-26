@@ -1,66 +1,14 @@
 <!doctype html>
 <head>
-<title> Welcome </title>
-<meta charset="utf-8">
-<link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/twitter-bootstrap/3.4.1/css/bootstrap.min.css">
-<link rel="stylesheet" href="css/Vstyle.css">
-<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdn.bootcss.com/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script> 
-<script >
-  $(window).on("load", function () {
-
-
-  $(".main").css({ 
-    height: $("#sidebar-nav").outerHeight()
-  });
-
-  $(".iframe_link").on("click", function () { 
-    var url = $(this).attr("href");
-    $(".iframe_mx").attr("src", url);
-    return false;
-  });
-
-  $(".filter").click(function () {
-    $(this).next().slideToggle();
-  });
-});
-</script> 
+<meta charset="UTF-8">
+<title>  visualization </title>
+<link href="https://cdn.pydata.org/bokeh/release/bokeh-1.0.4.min.css" rel="stylesheet" type="text/css">
+<link href="https://cdn.pydata.org/bokeh/release/bokeh-widgets-1.0.4.min.css" rel="stylesheet" type="text/css">
+<script src="http://cdn.pydata.org/bokeh/release/bokeh-1.0.4.min.js"></script>
+<script src="http://cdn.pydata.org/bokeh/release/bokeh-widgets-1.0.4.min.js"></script>
+{{ heatmapscript | safe }}	
 </head>
-
 <body>
-<div id="wrapper"> 
-  <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="brand"> <a href="index.html"><img src="img/logo.png" width=150px; height=75px;></a> </div>
-  </nav>
-  
-  
-  <div id="sidebar-nav" class="sidebar">
-    <div class="sidebar-scroll">
-      <nav>
-        <ul class="nav">
-          <li><a href="mainpart.html" class="iframe_link active"><span>Module</span></a></li>
-          <li><a href="" class="iframe_link"><span>Visulization</span></a></li>
-		  <li> 
-      
-      <a href="javascript:;" class="filter"> <span>Filter</span> </a>
-            <div>
-              <ul>
-                  <li><input type="checkbox" value="xxx" class="style-filter"> xxx</li>
-                  <li><input type="checkbox" value="xxx" class="style-filter"> xxx</li>
-              </ul>
-            </div>
-          </li>
-        </ul>
-      </nav>
-    </div>
-  </div>
-
-
-  <div class="main">
-    <div class="main-content" style="height: 100%;">
-      <iframe src="mainpart.html" class="iframe_mx uicss-cn"></iframe>
-    </div>
-  </div>
-</div>
+  {{ heatmapdiv | safe }}
 </body>
 </html>

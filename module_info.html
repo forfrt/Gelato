@@ -17,26 +17,40 @@
      
      count++;　　
 
-});
+    })
 
-$("#deleteElement").click(function(){
+    $("#deleteElement").click(function(){
 
-    var check = document.getElementsByName("check");
+        var check = document.getElementsByName("check");
 
-    for(var i=0;i<check.length;i++){
+        for(var i=0;i<check.length;i++){
 
-        if(check[i].checked){
+            if(check[i].checked){
 
-             document.getElementById('table').deleteRow(i);
+                document.getElementById('table').deleteRow(i);
 
-             i--;
+                i--;
 
-        }
+            }
 
-    }
+        }    
+        })
     
-
-})
+    $("#submit").click(function(){
+        // var level =document.getElementById("level").value;
+        var mCode =document.getElementById("mCode").value;
+        localStorage.setItem("mcode",mCode);
+        var mName =document.getElementById("mName").value;
+        localStorage.setItem("mname",mName);
+        // var w=window.open('mainpart.html');
+        // var w=window.open('mainpart.html');
+        // var button=$("<tr><td name=\"modulename\"><a href=\"moduleinfo.html\" >"+mcode+"&nbsp&nbsp&nbsp&nbsp"+mname+"</a></td><td><input type=\"image\" value=\"\" name=\"addElement\" src=\"img/add.png\" width=\"30\" height=\"25\" onclick='addModule()'/></td><td><input type=\"image\" value=\"deleteModule\" id=\"deleteElement\" src=\"img/delete.png\" width=\"30\" height=\"25\" onclick='deleteModule(this)'/></td></tr>",w.document);
+        // $(w.document).$("#table").prepend(button);
+        // var credit =document.getElementById("credit").value; 
+        // var department =document.getElementById("department").value; 
+        // var duration =document.getElementById("duration").value;  
+        window.location.href='mainpart.html';
+    })
 
 })
 </script>
@@ -47,13 +61,17 @@ $("#deleteElement").click(function(){
         <table>
             <tr>
                 <td><b>Module Level</b></td>  
-                <td><select name="Lever"> 
+                <td><select name="Lever" id="level"> 
                     <option value="1">U1</option> 
                     <option value="2">U2</option> 
                     <option value="3">U3</option> 
                     <option value="4">U4</option> 
                     <option value="0">PGT</option> 
                 </select></td>
+            </tr>
+            <tr>
+                <td><b>Module Code</b></td>
+                <td><input name="mCode" type="text" id="mCode"> </td>
             </tr>
             <tr>
                 <td><b>Module Name</b></td>

@@ -1,6 +1,6 @@
 @charset "utf-8";
 body{
-    background-color:black
+    background-color:#252c35;
 }
 
 table {border-spacing:0;}
@@ -11,6 +11,10 @@ table {border-spacing:0;}
 .form-div input[type="text"], .form-div input[type="password"], .form-div input[type="email"]{width:268px; margin:10px; line-height:20px; font-size:16px;}
 
 .form-div table{margin:0 auto; text-align:left; color:rgb(252, 250, 250);}
+
+.role{
+    display:none;
+}
 
 input[type="text"], input[type="password"], input[type="email"] {
     border-radius:8px;

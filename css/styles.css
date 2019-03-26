@@ -2,19 +2,6 @@
 	font-family: mFont;
 	src: "img/MyriadPro-Light.ttf";
 	}
-
-html,  div, span, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, img, small, strong, ol, ul, li, form, label,
-table, caption, tr, td, footer, header {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-}
-footer, header, menu, nav, section {
-	display: block;
-}
 body {
 	/* background-color: black; */
 	font-family: "MyriadPro-Light.ttf";
@@ -45,7 +32,6 @@ a:hover {  text-decoration:none; }
 .main-content { padding:40px 0 0; height:519px; display:block; }
 h3 { font-size:30px; }
 h2 { font-size:50px;}
-.copyrights{text-indent:-9999px;height:0;line-height:0;font-size:0;overflow:hidden;}
 
 .header  { clear:both; height:76px; }
 .logo { float:left; }
@@ -56,7 +42,7 @@ h2 { font-size:50px;}
 .navi li.active a { opacity:1; }
 
 
-.slider { clear:both;  margin-top:100px; }
+.slider { clear:both;  margin-top:100px; margin-left:300px; }
 .slider-txt {float:left; width:470px;}
 .slider-txt h2 { color:#fff; line-height:0.5; font-weight:900; padding:40px 0 0; }
 .slider-txt h3 { color:#fff; line-height:1; font-weight:700; padding:40px 0 30px; }
