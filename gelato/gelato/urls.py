@@ -14,17 +14,17 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import include, path
+from django.urls import include, path, re_path
 from gelato import views
+from django.contrib.auth import views as auth_views
 
 
 urlpatterns = [
 
-    # path('admin/', admin.site.urls),
-    path('signin_<int:role_id>', views.signin_pages),
+    path('admin/', admin.site.urls),
+    path('signin_<int:role_id>/', views.signin_pages),
     path('login/', views.login),
 
-    # path('admin/', admin.site.urls),
     path('index/', views.index),
     path('welcome/', views.welcome),
     path('clean/', views.clean),
@@ -41,4 +41,9 @@ urlpatterns = [
     path('addassignment/', views.addassignment),
     path('assignment/', views.assignment),
     path('assignment_edit/', views.assignment_edit, ),
+
+    path('users/password_reset/', auth_views.PasswordResetView.as_view()),
+    path('users/password_reset/done/', auth_views.PasswordResetDoneView.as_view()),
+    path('users/reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view()),
+    path('users/reset/done/', auth_views.PasswordResetCompleteView.as_view()),
 ]

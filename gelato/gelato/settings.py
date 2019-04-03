@@ -25,7 +25,7 @@ SECRET_KEY = 'sdh5(m!pm73((617im-6))8q0o*ar)r*re#vukl8ngeen$o#pc'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["178.62.33.38",]
+ALLOWED_HOSTS = ["178.62.33.38", "140.82.42.69"]
 
 
 # Application definition
@@ -80,7 +80,7 @@ DATABASES = {
         'NAME': 'gelato',
         'USER': 'root', # TODO: add a gelato account
         'PASSWORD': 'gelato',
-        'HOST': '127.0.0.1',
+        'HOST': '178.62.33.38',
         'PORT': '3306',
     },
 
@@ -124,3 +124,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+if DEBUG:
+    EMAIL_HOST = 'localhost'
+    EMAIL_PORT = 1025
+    EMAIL_HOST_USER = ''
+    EMAIL_HOST_PASSWORD = ''
+    EMAIL_USE_TLS = False
+    DEFAULT_FROM_EMAIL = 'testing@example.com'
+
