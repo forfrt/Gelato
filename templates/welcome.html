@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>
+    <font color="white"> Hello {{ name }} </font>
+</h1>
+<div>
+{% for line in data_control %}
+{#    <td>{{ line }}</td>#}
+    <form action="/adademic_control/" method="post">
+        <input style="float:left;margin-left:10px;margin-top:10px;padding:5px 7px;background-color: #3b98c8;text-align:center;border-radius:5px;border:none;color:#FFF;"type="submit" name="code" value={{line}}>
+    </form >
+{% endfor %}
+</div>
+
+<div style="position:relative;margin-top:300px;margin-left:36%;">
+<div action="/control_select/" method="post">
+    <select name="selectacademic">
+        {% for line in data_all %}
+        <option value="{{ line }}">{{line}}</option>
+        {% endfor %}
+    </select>
+    <input style="padding:5px 7px;" type="submit" value="control this count"/>
+</div>
+</div>
+
+<div style="margin-left:35%;margin-top:30px; width:300px; border-style: outset;border-color: azure;text-align: center;">
+</form>
+          <form id='send_email' action="/sendemail/" method="post">
+            <a href="javascript:;" class="subtitle" style="color: azure;text-decoration: none; margin-top:150px;"> <span>Get emails</span></a>
+            <div>
+                <ul>
+                    <li class="time" style="list-style: none;"><div class="date" style="width:10%;float:left;color:azure;">Start</div><input name="startdata" id="startdata" type="Date"class="style-filter"></li>
+                    <li class="time" style="list-style: none;"><div class="date" style="width:10%;float:left;color:azure;">End</div><input name="enddata" id="enddata" type="Date"class="style-filter"></li>
+                    <li style="list-style: none;margin-left:-30px;"><input type="submit" value="Get Emails" class="getemail-button" style="margin-top:30px;padding:5px 7px;background-color: #3b98c8;text-align:center;border-radius:5px;border:none;color:#FFF;"></li>
+                </ul>
+            </div>
+          </form>
+</div>
+{#<img src="/static/imgs/snow.jpg" height="1000" width="2000"></img>#}
+</body>
+</html>

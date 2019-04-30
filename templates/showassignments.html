@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>assignments</title>
+</head>
+<body>
+ {% for line in data %}
+<tr>
+{#    <td>{{ line }}</td>#}
+    <td><form action="/" method="post">
+
+        <font color="white">{{line}}</font>
+    </form ></td>
+</tr>
+       {% endfor %}
+
+
+     <form action="/report/" method="post">
+     <input type="submit" name="submit" value="Module Information Booklet">
+     </form>
+
+
+</body>
+</html>
+

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1 style="...">show the username and password</h1>
+<table border="1">
+    <thead>
+        <th>user name</th>
+        <th>password</th>
+    </thead>
+    <tbody>
+        {% for line in data %}
+            <tr>
+                <td>{{ line.user }}</td>
+                <td>{{ line.pwd }}</td>
+            </tr>
+        {% endfor %}
+
+    </tbody>
+
+</table>
+
+</body>
+</html>

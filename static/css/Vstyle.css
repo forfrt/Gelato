@@ -1,0 +1,302 @@
+/*@font-face {*/
+	/*font-family: mFont;*/
+	/*src: url('../img/MyriadPro-Light.ttf');*/
+    /*}*/
+
+/*body {*/
+    /*font-family: "MyriadPro-Light.ttf";*/
+    /*src: url('../img/MyriadPro-Light.ttf');*/
+    /*font-weight: normal;*/
+    /*font-style: normal;*/
+    /*line-height: 1;*/
+    /*}*/
+/*.main{ background: #252c35!important }*/
+
+/*.iframe_mx {*/
+	/*width: 100%;*/
+	/*height: 100%;*/
+	/*border:none;*/
+/*}*/
+
+/*.nav>li>form>a {*/
+	/*position: relative;*/
+	/*display: block;*/
+	/*padding: 17px 45px;*/
+	/*color: #657892;*/
+	/*border-left: 4px solid #2b333e;*/
+/*}*/
+/*.nav>li>form>a:hover, .nav>li>form>a:focus, .nav>li>form>a.active {*/
+	/*position: relative;*/
+	/*display: block;*/
+	/*padding: 17px 45px;*/
+	/*color: #3b98c8;*/
+	/*background: #252c35;*/
+	/*border-left: 4px solid #3b98c8*/
+/*}*/
+/*.nav > li >form> div {*/
+    /*color:#3b98c8;*/
+	/*background: #141a21;*/
+	/*display: none;*/
+/*}*/
+/*.nav >li > form>div> ul> li {*/
+	/*padding: 10px 50px;*/
+/*}*/
+/*.nav >li > form >div> ul {*/
+	/*padding: 0*/
+/*}*/
+/*.nav >li> div >ul> li >form> a:hover, .nav >li> div >ul> li >form> a:focus {*/
+	/*color: #3b98c8;*/
+	/*background: #141a21;*/
+/*}*/
+
+/*.nav>li>a {*/
+	/*position: relative;*/
+	/*display: block;*/
+	/*padding: 17px 45px;*/
+	/*color: #657892;*/
+	/*border-left: 4px solid #2b333e;*/
+/*}*/
+/*.nav>li>a:hover, .nav>li>a:focus, .nav>li>a.active {*/
+	/*position: relative;*/
+	/*display: block;*/
+	/*padding: 17px 45px;*/
+	/*color: #3b98c8;*/
+	/*background: #252c35;*/
+	/*border-left: 4px solid #3b98c8*/
+/*}*/
+/*.nav > li > div {*/
+    /*color:#3b98c8;*/
+	/*background: #141a21;*/
+	/*display: none;*/
+/*}*/
+/*.nav >li > div> ul> li {*/
+	/*padding: 10px 50px;*/
+/*}*/
+/*.nav >li > div> ul {*/
+	/*padding: 0*/
+/*}*/
+/*.nav >li> div >ul> li > a:hover, .nav >li> div >ul> li > a:focus {*/
+	/*color: #3b98c8;*/
+	/*background: #141a21;*/
+/*}*/
+/*.navbar-default {*/
+	/*border-radius: 0;*/
+	/*padding: 0;*/
+	/*margin: 0;*/
+	/*border: 0;*/
+	/*background-color: #252c35;*/
+	/*box-shadow: 0 0 15px #000;*/
+/*}*/
+
+/*.navbar-default .brand {*/
+    /*padding: 0px 20px;*/
+/*}*/
+
+/*.filter{*/
+	/*margin-top:0;*/
+/*}*/
+
+/*!* .style-filter{*/
+	/*position: relative;*/
+	/*margin-top:50px;*/
+/*} *!*/
+
+/*.confirm-buttom{*/
+	/*position: relative;*/
+	/*padding:3px 7px;*/
+    /*background-color: #3b98c8;;*/
+    /*text-align:center;*/
+    /*border-radius:5px;*/
+    /*border:none;*/
+    /*color:#FFF;*/
+	/*margin-top:10px;*/
+	/*!* left:40%; *!*/
+/*}*/
+
+/*a:hover,a:focus{*/
+    /*text-decoration:none;*/
+    /*outline:0;*/
+/*}*/
+
+/*#wrapper .sidebar{*/
+    /*width:360px;*/
+    /*height:100%;*/
+    /*float:left;*/
+    /*background-color:#2b333e;*/
+    /*position:fixed;*/
+/*}*/
+
+
+/*#wrapper .main{width:calc(100% - 260px);left:0;position:relative;float:right;background-color:#f5f5fa}*/
+
+/*#wrapper #sidebar-nav,#wrapper .main{padding-top:80px;overflow: hidden;}*/
+
+
+
+
+
+
+
+
+
+
+@font-face {
+	font-family: mFont;
+	src: url('../img/MyriadPro-Light.ttf');
+    }
+
+body {
+    font-family: "MyriadPro-Light.ttf";
+    src: url('../img/MyriadPro-Light.ttf');
+    font-weight: normal;
+    font-style: normal;
+    line-height: 1;
+    }
+.main{ background: #252c35!important }
+
+.iframe_mx {
+	width: 100%;
+	height: 100%;
+	border:none;
+}
+
+.nav>li>form>a {
+	position: relative;
+	display: block;
+	padding: 12px 45px;
+	color: #657892;
+	border-left: 4px solid #2b333e;
+}
+.nav>li>form>a:hover, .nav>li>form>a:focus, .nav>li>form>a.active {
+	position: relative;
+	display: block;
+	color: #3b98c8;
+	background: #252c35;
+	border-left: 4px solid #3b98c8
+}
+.nav > li >form> div {
+    color:#3b98c8;
+	background: #141a21;
+	display: none;
+}
+.nav >li > form >div> ul> li {
+	padding: 10px 20px;
+}
+.nav >li > form >div> ul {
+	padding: 0
+}
+
+.nav>li>a {
+	position: relative;
+	display: block;
+	padding: 12px 45px;
+	color: #657892;
+	border-left: 4px solid #2b333e;
+}
+.nav>li>a:hover, .nav>li>a:focus, .nav>li>a.active {
+	position: relative;
+	display: block;
+	color: #3b98c8;
+	background: #252c35;
+	border-left: 4px solid #3b98c8
+}
+.nav > li > div {
+    color:#3b98c8;
+	background: #141a21;
+	display: none;
+}
+.nav >li > div> ul> li {
+	padding: 10px 50px;
+}
+.nav >li > div> ul {
+	padding: 0
+}
+
+.navbar-default {
+	border-radius: 0;
+	padding: 0;
+	margin: 0;
+	border: 0;
+	background-color: #252c35;
+	box-shadow: 0 0 15px #000;
+}
+
+.navbar-default .brand {
+    padding: 0px 20px;
+}
+
+.filter{
+	margin-top:0;
+}
+
+.style-filter{
+	position: relative;
+	left:10px;
+}
+
+.confirm-button{
+	position: relative;
+	margin-top: 20px;
+	margin-left:19%;
+	padding:5px 20px;
+    background-color: #3b98c8;;
+    text-align:center;
+    border-radius:5px;
+    border:none;
+    color:#FFF;
+}
+
+.getemail-button{
+	position: relative;
+	margin-left: 19%;
+	padding:5px 7px;
+    background-color: #3b98c8;;
+    text-align:center;
+    border-radius:5px;
+    border:none;
+    color:#FFF;
+}
+
+
+a:hover,a:focus{
+    text-decoration:none;
+    outline:0;
+}
+
+#wrapper .sidebar{
+    width:360px;
+    height:100%;
+    float:left;
+    background-color:#2b333e;
+    position:fixed;
+}
+
+
+#wrapper .main{width:calc(100% - 260px);left:0;position:relative;float:right;background-color:#f5f5fa}
+
+#wrapper #sidebar-nav,#wrapper .main{padding-top:80px;overflow: hidden;}
+
+.date{
+	width:10%;
+	float:left;
+}
+
+.subtitle{
+	position: relative;
+	padding: 10px 0px;
+	color:azure;
+}
+
+.subtitle:hover,.subtitle:focus{
+	position: relative;
+	color:#3b98c8;
+	padding: 10px 0px;
+}
+
+.time {
+	padding: 5px 20px;
+}
+
+.check_box_list{
+	padding: 0px 20px;
+}

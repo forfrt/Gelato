@@ -1,0 +1,43 @@
+<html>
+<head>
+    <img src="../static/img/logo.png">
+        <title>Module Information Form </title>
+        <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script>
+  function getSearchTime(){
+    let date=new Date();
+    let Y= date.getFullYear()+'-';
+    let M=date.getMonth()+1;
+    if(M<10){
+        M='0'+M;
+    }
+    M=M+'-';
+    let D=date.getDate();
+    if(D<10){
+        D='0'+D;
+    }
+    return Y+M+D
+}
+    </script>
+    <script>
+        $(window).on("load", function () {
+            $('#date').html(getSearchTime());
+        });
+        </script>
+</head>
+<body>
+
+    <h3 style="text-align:center;font-weight: lighter;margin-top:50px;">The University of Sheffield</h3>
+    <h2 style="text-align:center;margin-top:30px;">Module Information Form</h2>
+    <div style=" text-align: center">
+        <img name="logo" src="/Users/lizhenyu/Downloads/tuoslogo.png" style="width:150px;height:150px;">
+{#        <img name="logo" src="../static/img/tuoslogo.png" style="width:150px;height:150px;">#}
+    </div>
+    <h5 style="text-align:center" id="date"></h5>
+    <p style= "font-size: 10pt;font-family: Calibri;">Module Code: {{ module_code | safe }}<br>
+        Academic(s): {{academics | safe}} <br>
+        Duration(s): {{durations | safe}} <br>
+    </p>
+     {{ assig_table | safe }}
+</body>
+</html>

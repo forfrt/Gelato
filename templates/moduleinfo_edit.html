@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>moduleinfo</title>
+<link rel="stylesheet" type="text/css" href="../static/css/moduleInfoStyle.css">
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script>
+
+</script>
+</head>
+<h1>
+    <font color="white"> welcome {{ uname }} ! </font>
+</h1>
+<body style="font-size: 17px;line-height:0;">
+<div class="form-div" style="margin-top:180px">
+    <form id="moduleadd" action="/module_edition/" method="post">
+        <table>
+            <tr>
+                <td><b>Lecturer</b></td>
+                <td><input name="uName" type="text" id="uName" readonly value={{ uname }}> </td>
+            </tr>
+            <tr>
+                <td><b>Module code</b></td>
+                <td><input name="mCode" type="text" id="mName" readonly value={{ modelcode }}> </td>
+            </tr>
+            <tr>
+                <td><b>Credit</b></td>
+                <td><input name="credit" type="int" id="credit" value={{ credits }}></td>
+            </tr>
+            <tr>
+                <td><b>Department</b></td>
+                <td><input name="department" type="text" id="department" value={{ departments }}></td>
+            </tr>
+            <tr>
+                <td><b>Student Number</b></td>
+                <td><input name="sNumber" type="int" id="sNumber" value={{ students }}></td>
+            </tr>
+            <tr>
+                <td><b>Duration</b></td>
+                <td><input name="duration" type="text" id="duration" value={{ duration }}></td>
+            </tr>
+            <td>   
+                <select name="Lever">
+                    <option value="U1">U1</option>
+                    <option value="U2">U2</option>
+                    <option value="U3">U3</option>
+                    <option value="U4">U4</option>
+                    <option value="PGT">PGT</option>
+                </select> 
+            </td>
+        </table>
+        <div class="buttons">
+</div>
+
+        <br class="clear">
+    </form>
+</div>
+
+<form action="/assignment/" method="post">
+<input type="submit" class="lanse" name= "add assignment" value="Add Assignment">
+</form>
+<table id="table"></table>
+
+</body>
+<tbody>
+{% for line in data %}
+
+<tr>
+{#    <td>{{ line }}</td>#}
+    <td><form action="/assignment_edit/" method="post">
+        <input type="submit" class="green" name="submit" value={{line}}>
+    </form ></td>
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</html>

@@ -1,0 +1,74 @@
+<html>
+<head>
+        <link href="http://cdn.pydata.org/bokeh/release/bokeh-1.0.4.min.css" rel="stylesheet" type="text/css">
+        <link href="http://cdn.pydata.org/bokeh/release/bokeh-widgets-1.0.4.min.css" rel="stylesheet" type="text/css">
+        <script src="http://cdn.pydata.org/bokeh/release/bokeh-1.0.4.min.js"></script>
+        <script src="http://cdn.pydata.org/bokeh/release/bokeh-widgets-1.0.4.min.js"></script>
+        <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+        {{ hscript | safe }}
+        {{ tscript | safe }}
+        
+        <title>  Visualization </title>
+</head>
+<script >
+  $(window).on("load", function () {
+    $('#start-date').val(getSearchTime_s());
+    $('#end-date').val(getSearchTime_e());
+});
+</script>
+<script>
+  function getSearchTime_s(){
+    return '2018-'+'04-'+'25'
+}
+  function getSearchTime_e(){
+    return '2019-'+'04-'+'25'
+}
+</script>
+
+<body>
+<div>
+<div style="float:left">
+  {{ hdiv | safe }}
+  {{ tdiv | safe }}
+</div>
+<div style="float:left;margin-left:100px;border-style: solid;border-color: azure;height: 150%;">
+      <form id='form' action="/filter/"  method="post">
+      <a href="javascript:;" class="filter" style="color: azure;text-decoration: none;margin-left: 20px;margin-top:50px;"> <span>Filter</span> </a>
+            <div>
+              <ul>
+                  <div class="subtitle" style="color:azure;	position: relative;padding: 10px 0px;">Submission Date</div>
+                  <div>
+                      <li class="time" style="list-style: none"><div class="date" style="width:10%;float:left;color:azure;">Start</div><input name="start_time" id="start-date" type="Date"class="style-filter" style="position:relative;left:30px;"></li>
+                      <li class="time" style="list-style: none"><div class="date" style="width:10%;float:left;color:azure">End</div><input name="end_time" id="end-date" type="Date"class="style-filter" style="position:relative;left:30px;"></li>
+                  </div>
+                  <div class="subtitle" style="color:azure;	position: relative;padding: 10px 0px;">Assignment Format</div>
+                  <div>
+                      <li style="list-style: none"><div class="check_box_list" style="color:azure"><input name="format" type="checkbox" value="Assessed lab"> Assessed lab</div></li>
+                      <li style="list-style: none"><div class="check_box_list" style="color:azure"><input name="format" type="checkbox" value="MOLE quiz"> Mole quiz</div></li>
+                      <li style="list-style: none"><div class="check_box_list" style="color:azure"><input name="format" type="checkbox" value="Formal exam"> Formal exam</div></li>
+{#                      <li><input name="check_box_list" type="checkbox" value="others" class="style-filter">others</li>#}
+                  </div>
+                  <div class="subtitle" style="color:azure;	position: relative;padding: 10px 0px;">Level</div>
+                  <div>
+                      <li style="list-style: none"><div class="check_box_list" style="color:azure"><input name="level" type="checkbox" value="1"> 1</div></li>
+                      <li style="list-style: none"><div class="check_box_list" style="color:azure"><input name="level" type="checkbox" value="2"> 2</div></li>
+                      <li style="list-style: none"><div class="check_box_list" style="color:azure"><input name="level" type="checkbox" value="3"> 3</div></li>
+                      <li style="list-style: none"><div class="check_box_list" style="color:azure"><input name="level" type="checkbox" value="4"> 4</div></li>
+                      <li style="list-style: none"><div class="check_box_list" style="color:azure"><input name="level" type="checkbox" value="PGT"> PGT</div></li>
+                  </div>
+                  <div class="subtitle" style="color:azure;	position: relative;padding: 10px 0px;">Module</div>
+                      <div style="position:relative;overflow-y:auto; width:250px; height:65px;">
+                          {% for line in modules %}
+                              <tr><li style="color: azure"><input name="modules" type="checkbox" value={{line}} class="style-filter" > &nbsp{{line}}</li></tr>
+                          {% endfor %}
+                       </div>
+                  <li style="list-style: none"><input type="submit" value="confirm" class="confirm-button" style="margin-top:30px;margin-left:10%;padding:5px 20px;background-color: #3b98c8;text-align:center;border-radius:5px;border:none;color:#FFF;"></li>
+              </ul>
+            </div>
+          </form>
+</div>
+</div>
+
+</body>
+</html>
