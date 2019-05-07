@@ -1,14 +1,22 @@
 import json
+import random
+import string
 
 from gelato import models
+from gelato.forms import *
+from django.views import View
+from django.template import loader
 from django.shortcuts import render
-from django.core.mail import EmailMessage
 from django.shortcuts import HttpResponse
+from django.views.generic.edit import FormView
+from django.core.mail import EmailMultiAlternatives
 
 user_list = [
     {"user":"jack","pwd":"abc"},
     {"user":"wom","pwd":"ABC"},
 ]
+
+FROM_EMAIL='rtfeng12@gamil.com'
 
 def index(request):
 
@@ -227,7 +235,6 @@ def assignment(request):
 
     if request.method == "POST":
         count = 0
-        # modulecode = request.POST.get("mCode", None)
         email = request.session.get('member_id')
         modulecode = request.session.get('moduleid')
         modulecturer= models.Academics.objects.get(email=email).name
@@ -277,6 +284,7 @@ def assignment_edit(request):
         Submission_date = str(models.Assignments.objects.get(assignment_id=assignment_id).submission_date)
         aformat = models.Assignments.objects.get(assignment_id=assignment_id).assignment_format
         aPer = models.Assignments.objects.get(assignment_id=assignment_id).percentage
+
         return render(request,"assignmentinfo_edit.html",{"assignmentid":assignment_id,"modulecode":modulecode,"modulecturer":modulecturer,"registration_date":registration_date,"realease_date":realease_date,"Submission_date":Submission_date,"aformat":aformat,"aPer":aPer})
 
 def send_password_email(email, password):
@@ -293,4 +301,183 @@ def send_password_email(email, password):
         # In reality we'd use a form class
         # to get proper validation errors.
         return HttpResponse('Make sure all fields are entered and valid.')
+
+# class AdminProfileView(FormView):
+#     form_class=AdminProfileForm
+#     template_name="admin_profile.html"
+#     
+#     def form_valid(self, form):
+#         return super().form_valid(form)
+# 
+#     def get_context_data(self, **kwargs):
+#         context=super().get_context_data(**kwargs)
+#         return context
+# 
+#     def get_initial(self):
+#         initial=super(AdminProfileView, self).get_initial()
+#         if initial:
+#             return initial
+#         else:
+#             if self.request.session['admin_id']:
+#                 return models.Administrators.objects.get(admin_id='04db271174d438e6bed967709e73d77a').__dict__
+#             else:
+#                 return 
+
+class AdminProfileView(View):
+    form_class=AdminProfileForm
+    template_name="admin_profile.html"
+
+    def post(self, request, *args, **kwargs):
+        #if 'admin_id' in self.request.session and self.request.session['admin_id']:
+        admin_id='04db271174d438e6bed967709e73d77a'
+        if True:
+            admin=models.Administrators.objects.get(admin_id=admin_id)
+            message=''
+
+            form=AdminProfileForm(self.request.POST)
+            if form.is_valid():
+                admin.name          =form.cleaned_data['name']
+                admin.email         =form.cleaned_data['email']
+                admin.position      =form.cleaned_data['position']
+                admin.encripted_pwd =form.cleaned_data['encripted_pwd']
+                admin.save()
+
+                ac_ad_set=models.AcAd.objects.filter(admin__admin_id=admin.admin_id)
+                acades=list()
+                for ac_ad in ac_ad_set:
+                    acade=models.Academics.objects.get(academic_id=ac_ad.academic_id)
+                    acades.append(acade)
+
+                message='Update Successfully'
+            else:
+                message='Update failed'
+
+            return render(request, 'admin_profile.html', {'form':form, 'acades': acades, 'message':message})
+        else:
+            return render(request, 'session_missed.html')
+
+    def get(self, request, *args, **kwargs):
+        #if 'admin_id' in self.request.session and self.request.session['admin_id']:
+        if True:
+            admin=models.Administrators.objects.get(admin_id='04db271174d438e6bed967709e73d77a')
+            form=AdminProfileForm(admin.__dict__)
+            ac_ad_set=models.AcAd.objects.filter(admin__admin_id=admin.admin_id)
+            acades=list()
+            for ac_ad in ac_ad_set:
+                acade=models.Academics.objects.get(academic_id=ac_ad.academic_id)
+                acades.append(acade)
+
+            return render(request, 'admin_profile.html', {'form':form, 'acades': acades})
+        else:
+            return render(request, 'session_missed.html')
+
+
+class AcadeProfileView(View):
+    form_class=AcadeProfileForm
+    template_name="acade_profile.html"
+
+    def post(self, request, *args, **kwargs):
+        # if 'admin_id' in self.request.session and self.request.session['admin_id']:
+        acade_id='cffa0015f8ce5f48646929c5a8d6ae15'
+        if True:
+            acade=models.Academics.objects.get(academic_id=acade_id)
+            message=''
+
+            form=AcadeProfileForm(request.POST)
+            if form.is_valid():
+                acade.name          =form.cleaned_data['name']
+                acade.email         =form.cleaned_data['email']
+                acade.encripted_pwd =form.cleaned_data['encripted_pwd']
+                acade.save()
+                message='Update Successfully'
+            else:
+                message='Update failed'
+
+            return render(request, 'acade_profile.html', {'form':form, 'message':message})
+        else:
+            return render(request, 'session_missed.html')
+
+    def get(self, request, *args, **kwargs):
+        # if 'admin_id' in self.request.session and self.request.session['admin_id']:
+        acade_id='cffa0015f8ce5f48646929c5a8d6ae15'
+        if True:
+            acade=models.Academics.objects.get(academic_id=acade_id)
+            form=AcadeProfileForm(acade.__dict__)
+
+            return render(request, 'acade_profile.html', {'form':form})
+        else:
+            return render(request, 'session_missed.html')
+
+PASSWD_LENGTH=10
+
+class PasswdResetView(View):
+
+    def get(self, request, *args, **kwargs):
+        form=PasswdResetForm()
+        return render(request, 'passwd_reset.html', {'form': form})
+
+    def post(self, request, *args, **kwargs):
+        form=PasswdResetForm(request.POST)
+
+        if form.is_valid():
+            if form.cleaned_data['label']=='acade':
+                try:
+                    acade=models.Academics.objects.get(email=form.cleaned_data['email'])
+                    rand_passwd=random_passwd()
+                    acade.cripted_pwd=rand_passwd
+                    acade.save()
+
+                    subject, from_email, to = 'Password_Reset', FROM_EMAIL, 'forfrt@gmail.com'
+                    text_content = 'Your new password is {}'.format(rand_passwd)
+                    html_content = '<p>Your new password is <strong>{{pwd}}</strong></p>'
+                    msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
+                    msg.attach_alternative(html_content.render({'pwd':rand_passwd}, requeset), "text/html")
+                    msg.send()
+
+                    return render(request, 'passwd_reset_done.html', {'email': to})
+
+                except models.Academics.DoesNotExist:
+                    message="The academics does not exist"
+                    return render(request, 'passwd_reset.html', {'form': form, 'message':message})
+
+            elif form.cleaned_data['label']=='admin':
+                try:
+                    admin=models.Administrators.objects.get(email=form.cleaned_data['email'])
+                    rand_passwd=random_passwd()
+                    admin.cripted_pwd=rand_passwd
+                    admin.save()
+
+                    subject, from_email, to = 'Password_Reset', FROM_EMAIL, admin.email
+                    text_content = 'Your new password is {}'.format(rand_passwd)
+                    html_content = '<p>Your new password is <strong>{{pwd}}</strong></p>'
+                    msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
+                    msg.attach_alternative(html_content.render({'pwd':rand_passwd}, requeset), "text/html")
+                    msg.send()
+
+                    return render(request, 'passwd_reset_done.html', {'email': to})
+
+                except models.Administrators.DoesNotExist:
+
+                    rand_passwd=random_passwd()
+
+                    subject, from_email, to = 'Password_Reset', FROM_EMAIL, 'forfrt@gmail.com'
+                    text_content = 'Your new password is {}'.format(rand_passwd)
+                    html_content = loader.get_template('passwd_reset_email.html')
+                    msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
+                    msg.attach_alternative(html_content.render({'pwd':rand_passwd}, request), "text/html")
+                    msg.send()
+
+                    return render(request, 'passwd_reset_done.html', {'email': to})
+
+                    #message="The adminisrator does not exist"
+                    #return render(request, 'passwd_reset.html', {'form': form, 'message':message})
+        else:
+            message=form.cleaned_data
+            return render(request, 'passwd_reset.html', {'form': form, 'message':message})
+
+
+def random_passwd(length=PASSWD_LENGTH):
+    """Generate a random string of fixed length """
+    letters = string.ascii_lowercase
+    return ''.join(random.choice(letters) for i in range(length))
 

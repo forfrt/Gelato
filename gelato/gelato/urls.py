@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path, re_path
 from gelato import views
-from django.contrib.auth import views as auth_views
+# from django.contrib.auth import views as auth_views
 
 
 urlpatterns = [
@@ -42,8 +42,16 @@ urlpatterns = [
     path('assignment/', views.assignment),
     path('assignment_edit/', views.assignment_edit, ),
 
-    path('users/password_reset/', auth_views.PasswordResetView.as_view()),
-    path('users/password_reset/done/', auth_views.PasswordResetDoneView.as_view()),
-    path('users/reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view()),
-    path('users/reset/done/', auth_views.PasswordResetCompleteView.as_view()),
+    # path('users/password_reset/', auth_views.PasswordResetView.as_view()),
+    # path('users/password_reset/done/', auth_views.PasswordResetDoneView.as_view()),
+    # path('users/reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view()),
+    # path('users/reset/done/', auth_views.PasswordResetCompleteView.as_view()),
+
+    path('password_reset/', views.PasswdResetView.as_view(), name="passwd_reset"),
+    path('admin/profile/', views.AdminProfileView.as_view(), name="admin_profile"),
+    path('acade/profile/', views.AcadeProfileView.as_view(), name="acade_profile"),
+    #path('user/password_reset/', views.user_profile)
+    #path('user/password_reset/', views.user_profile)
+    #path('user/password_reset/', views.user_profile)
+    #path('user/password_reset/', views.user_profile)
 ]

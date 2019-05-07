@@ -1,0 +1,65 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title> Administor Profile </title>
+{% load static %}
+<link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}"/>
+<link rel="stylesheet" href="{% static "css/profile.css" %}"/>
+</head>
+<body>
+<div class="form-div" style="margin-top:180px">
+<form action="{% url 'admin_profile' %}" method="POST" enctype="multipart/form-data">
+    <table>
+        <p>{{message}}</p>
+        {% csrf_token %}
+        <tr>
+            {{ form.email.errors }}
+            <td><b>Email subject:</b></td>
+            <td>{{ form.email }}</td>
+        </tr>
+        <tr>
+            {{ form.name.errors }}
+            <td><b>Your message:</b></td>
+            <td>{{ form.name }}</td>
+        </tr>
+        <tr>
+            {{ form.position.errors }}
+            <td><b>Your email position:</b></td>
+            <td>{{ form.position }}</td>
+        </tr>
+        <tr>
+            {{ form.encripted_pwd.errors }}
+            <td><b>Your email address:</b></td>
+            <td>{{ form.encripted_pwd }}</td>
+        </tr>
+        </table>
+    <input type="submit" value="save"/>
+</form>
+</div>
+
+
+
+<div class="form-div">
+<table>
+
+<tr>
+    <th>Academics Name</th>
+    <th>Academics Email</th>
+    <th><input type="button" value="sendEmail"></th>
+</tr>
+
+{% for acade in acades%}
+<tr>
+    <th>{{acade.name}}</th>
+    <th>{{acade.email}}</th>
+    <th><input type="button" value="sendEmail"></th>
+</tr>
+{% endfor %}
+
+</table>
+</div>
+</body>
+
+
