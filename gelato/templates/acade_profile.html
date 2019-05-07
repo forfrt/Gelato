@@ -1,0 +1,33 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title> Academic Profile </title>
+<link rel="stylesheet" href="css/bootstrap.min.css"/>
+<link rel="stylesheet" href="css/styles.css"/>
+</head>
+<body>
+<form action="{% url 'acade_profile' %}" method="POST" enctype="multipart/form-data">
+    <p>{{message}}</p>
+    {%csrf_token%}
+
+    <div class="fieldWrapper">
+        {{ form.email.errors }}
+        <label for="{{ form.subject.id_for_label }}">Email subject:</label>
+        {{ form.email }}
+    </div>
+    <div class="fieldWrapper">
+        {{ form.name.errors }}
+        <label for="{{ form.message.id_for_label }}">Your message:</label>
+        {{ form.name }}
+    </div>
+    <div class="fieldWrapper">
+        {{ form.encripted_pwd.errors }}
+        <label for="{{ form.sender.id_for_label }}">Your email address:</label>
+        {{ form.encripted_pwd }}
+    </div>
+
+    <input type="submit" value="login"/>
+</form>
+</body>

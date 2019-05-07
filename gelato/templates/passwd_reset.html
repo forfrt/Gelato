@@ -1,0 +1,19 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title> Password Reset </title>
+<link rel="stylesheet" href="css/bootstrap.min.css"/>
+<link rel="stylesheet" href="css/styles.css"/>
+</head>
+<body>
+<form action="{% url 'passwd_reset' %}" method="POST" enctype="multipart/form-data">
+    <p>{{message}}</p>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="save"/>
+</form>
+
+
+</body>

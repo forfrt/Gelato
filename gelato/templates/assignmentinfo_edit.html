@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>assignmentinfo</title>
+<link rel="stylesheet" type="text/css" href="css/assignmentInfoStyle.css">
+</head>
+<body style="font-size: 17px;line-height:0;">
+<div class="form-div" style="margin-top:180px">
+    <form id="assignment-form" action="/addassignment/" method="post">
+        <table>
+            <tr>
+                <td><b>Module Code</b></td>
+                <td><input name="mCode" type="text" id="mCode" readonly value={{ modulecode }}> </td>
+            </tr>
+            <tr>
+                <td><b>Module Lecturer</b></td>
+                <td><input name="mLect" type="text" id="mLect" readonly value={{ modulecturer }}> </td>
+            </tr>
+            <tr>
+                <td><b>Assignment Id</b></td>
+                <td><input name="aId" type="text" id="aId" readonly value={{ assignmentid }}></td>
+            </tr>
+            <tr>
+                <td><b>Registration_date</b></td>
+                <td><input name="registration_date" type="date" id="registration_date" value={{ registration_date }}></td>
+            </tr>
+            <tr>
+                <td><b>Realease_date</b></td>
+                <td><input name="realease_date" type="date" id="realease_date" value={{ realease_date }}></td>
+            </tr>
+            <tr>
+                <td><b>Submission_date</b></td>
+                <td><input name="Submission_date" type="date" id="Submission_date" value={{ Submission_date }}></td>
+            </tr>
+            <tr>
+                <td><b>Assignment format</b></td>
+                <td><input name="aformat" type="text" id="aformat" value={{ aformat }}></td>
+            </tr>
+            <tr>
+                <td><b>Percentage</b></td>
+                <td><input name="aPer" type="text" id="aPer" value={{ aPer }}></td>
+            </tr>
+             <td><b>mark way</b></td>
+            <td>
+                <select name="Lever">
+                    <option value="Google Doc provided by the admin team">Google Doc provided by the admin team</option>
+                    <option value="Excel spreadsheet provided by the admin team">Excel spreadsheet provided by the admin team</option>
+                    <option value="N/A - formal exam">N/A - formal exam</option>
+                </select>
+            </td>
+        </table>
+        <br class="clear">
+        <div class="buttons">
+    <input value="submit" type="submit" >
+        </div>
+
+    </form>
+</div>
+</body>
+</html>

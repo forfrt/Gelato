@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>moduleinfo</title>
+<link rel="stylesheet" type="text/css" href="css/moduleInfoStyle.css">
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+    
+    count = 0;
+
+    $("#addElement").click(function(){
+
+    var tr="<tr><td><input type=\"checkbox\" name=\"check\"/>"+
+   "</td><td><a href=\"assignmentinfo.html\" >Add assignment"+count+"</a></td></tr>";
+　  　$("#table").prepend(tr);
+     
+     count++;　　
+
+});
+
+$("#deleteElement").click(function(){
+
+    var check = document.getElementsByName("check");
+
+    for(var i=0;i<check.length;i++){
+
+        if(check[i].checked){
+
+             document.getElementById('table').deleteRow(i);
+
+             i--;
+
+        }
+
+    }
+    
+
+})
+
+})
+</script>
+</head>
+<h1>
+    welcome {{ name }} !
+</h1>
+<body style="font-size: 17px;line-height:0;">
+<div class="form-div" style="margin-top:180px">
+    <form id="moduleadd" action="/moduleadd/" method="post">
+        <table>
+            <tr>
+                <td><b>User Name</b></td>
+                <td><input name="uName" type="text" id="uName" readonly value={{ name }}> </td>
+            </tr>
+            <tr>
+                <td><b>Module code</b></td>
+                <td><input name="mCode" type="text" id="mName"> </td>
+            </tr>
+            <tr>
+                <td><b>Credit</b></td>
+                <td><input name="credit" type="int" id="credit"></td>
+            </tr>
+            <tr>
+                <td><b>Department</b></td>
+                <td><input name="department" type="text" id="department"></td>
+            </tr>
+            <tr>
+                <td><b>Student Number</b></td>
+                <td><input name="sNumber" type="int" id="sNumber"></td>
+            </tr>
+            <tr>
+                <td><b>Duration</b></td>
+                <td><input name="duration" type="text" id="duration"></td>
+            </tr>
+            <td>   
+                <select name="Lever"> 
+                    <option value="U1">U1</option>
+                    <option value="U2">U2</option>
+                    <option value="U3">U3</option>
+                    <option value="U4">U4</option>
+                    <option value="PGT">PGT</option>
+                </select> 
+            </td>
+        </table>
+        <div class="buttons">
+    <input value="submit" type="submit">
+</div>
+
+        <br class="clear">
+    </form>
+</div>
+<input type="button" value="addAssignment" id="addElement"/>
+<input type="button" value="deleteAssignment" id="deleteElement"/>
+<table id="table"></table>
+</body>
+</html>
